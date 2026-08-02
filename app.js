@@ -1,66 +1,55 @@
-// 3학년 학급 대항 축구 토너먼트 앱 로직
+// CCM Champions League - 6개 학과 토너먼트 로직
 
 const INITIAL_TEAMS = [
-    { id: 'elec31', name: '전기 3-1', dept: '⚡ 전기' },
-    { id: 'elec32', name: '전기 3-2', dept: '⚡ 전기' },
-    { id: 'mech31', name: '기계 3-1', dept: '⚙️ 기계' },
-    { id: 'mech32', name: '기계 3-2', dept: '⚙️ 기계' },
-    { id: 'mech33', name: '기계 3-3', dept: '⚙️ 기계' },
-    { id: 'ind31',  name: '산업설비 3-1', dept: '🔧 산업설비' },
-    { id: 'auto31', name: '자동차 3-1', dept: '🚗 자동차' },
-    { id: 'auto32', name: '자동차 3-2', dept: '🚗 자동차' },
-    { id: 'mold31', name: '스마트금형 3-1', dept: '🔩 스마트금형' },
-    { id: 'arch31', name: '건축토목 3-1', dept: '🏗️ 건축토목' },
-    { id: 'arch32', name: '건축토목 3-2', dept: '🏗️ 건축토목' }
+    { id: 'elec', name: '전기과', dept: '⚡ 전기과' },
+    { id: 'mech', name: '기계과', dept: '⚙️ 기계과' },
+    { id: 'ind',  name: '산업설비과', dept: '🔧 산업설비과' },
+    { id: 'auto', name: '자동차과', dept: '🚗 자동차과' },
+    { id: 'mold', name: '스마트금형과', dept: '🔩 스마트금형과' },
+    { id: 'arch', name: '건축토목과', dept: '🏗️ 건축토목과' }
 ];
 
-// Initial default bracket mapping
-// Round 1 (예선전): 3 matches between 6 teams. 5 teams BYE directly to Round 2 (8강).
+// Initial default bracket mapping (6 Teams)
+// Round 1 (예선전 6강): 2 matches (4 teams). 2 teams BYE directly to 4강 준결승.
 let matchData = {
-    // Round 1: 예선전
-    'M1': { id: 'M1', round: 1, title: '예선 1경기', team1: '전기 3-1', team2: '기계 3-1', score1: null, score2: null, winner: null, nextMatch: 'M4', nextSlot: 'team2' },
-    'M2': { id: 'M2', round: 1, title: '예선 2경기', team1: '기계 3-2', team2: '기계 3-3', score1: null, score2: null, winner: null, nextMatch: 'M5', nextSlot: 'team2' },
-    'M3': { id: 'M3', round: 1, title: '예선 3경기', team1: '자동차 3-1', team2: '자동차 3-2', score1: null, score2: null, winner: null, nextMatch: 'M6', nextSlot: 'team2' },
+    // Round 1: 예선전 (6강)
+    'M1': { id: 'M1', round: 1, title: '예선 1경기', team1: '전기과', team2: '기계과', score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null, nextMatch: 'M3', nextSlot: 'team2' },
+    'M2': { id: 'M2', round: 1, title: '예선 2경기', team1: '산업설비과', team2: '자동차과', score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null, nextMatch: 'M4', nextSlot: 'team2' },
 
-    // Round 2: 8강전 (5개 부전승 팀 배치 + 3개 예선 승리 팀)
-    'M4': { id: 'M4', round: 2, title: '8강 1경기', team1: '전기 3-2', isBye1: true, team2: null, score1: null, score2: null, winner: null, nextMatch: 'M8', nextSlot: 'team1' },
-    'M5': { id: 'M5', round: 2, title: '8강 2경기', team1: '산업설비 3-1', isBye1: true, team2: null, score1: null, score2: null, winner: null, nextMatch: 'M8', nextSlot: 'team2' },
-    'M6': { id: 'M6', round: 2, title: '8강 3경기', team1: '스마트금형 3-1', isBye1: true, team2: null, score1: null, score2: null, winner: null, nextMatch: 'M9', nextSlot: 'team1' },
-    'M7': { id: 'M7', round: 2, title: '8강 4경기', team1: '건축토목 3-1', isBye1: true, team2: '건축토목 3-2', isBye2: true, score1: null, score2: null, winner: null, nextMatch: 'M9', nextSlot: 'team2' },
+    // Round 2: 4강 준결승 (부전승 2팀 배치 + 예선 승자 2팀)
+    'M3': { id: 'M3', round: 2, title: '준결승 1경기', team1: '스마트금형과', isBye1: true, team2: null, score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null, nextMatch: 'M5', nextSlot: 'team1', loserMatch: 'M6', loserSlot: 'team1' },
+    'M4': { id: 'M4', round: 2, title: '준결승 2경기', team1: '건축토목과', isBye1: true, team2: null, score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null, nextMatch: 'M5', nextSlot: 'team2', loserMatch: 'M6', loserSlot: 'team2' },
 
-    // Round 3: 4강전 (준결승)
-    'M8': { id: 'M8', round: 3, title: '준결승 1경기', team1: null, team2: null, score1: null, score2: null, winner: null, loser: null, nextMatch: 'M10', nextSlot: 'team1', loserMatch: 'M11', loserSlot: 'team1' },
-    'M9': { id: 'M9', round: 3, title: '준결승 2경기', team1: null, team2: null, score1: null, score2: null, winner: null, loser: null, nextMatch: 'M10', nextSlot: 'team2', loserMatch: 'M11', loserSlot: 'team2' },
-
-    // Round 4: 결승전 & 3위 결정전
-    'M10': { id: 'M10', round: 4, title: '🏆 결승전', isFinal: true, team1: null, team2: null, score1: null, score2: null, winner: null, loser: null },
-    'M11': { id: 'M11', round: 4, title: '🥉 3·4위 결정전', is3rd: true, team1: null, team2: null, score1: null, score2: null, winner: null, loser: null }
+    // Round 3: 결승전 & 3위 결정전
+    'M5': { id: 'M5', round: 3, title: '🏆 결승전', isFinal: true, team1: null, team2: null, score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null },
+    'M6': { id: 'M6', round: 3, title: '🥉 3·4위 결정전', is3rd: true, team1: null, team2: null, score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null }
 };
 
 let currentEditingMatchId = null;
 
-// DOM Elements
 document.addEventListener('DOMContentLoaded', () => {
     renderTeamChips();
     renderBracket();
     setupEventListeners();
+    setupBanners();
 });
 
-// Render list of participating teams
+// Render list of participating departments
 function renderTeamChips() {
     const container = document.getElementById('teams-chips');
     container.innerHTML = '';
 
-    const byeTeamNames = ['전기 3-2', '산업설비 3-1', '스마트금형 3-1', '건축토목 3-1', '건축토목 3-2'];
+    // Check currently assigned BYE teams
+    const byeTeams = [matchData['M3'].team1, matchData['M4'].team1];
 
     INITIAL_TEAMS.forEach(team => {
-        const isBye = byeTeamNames.includes(team.name);
+        const isBye = byeTeams.includes(team.name);
         const chip = document.createElement('div');
         chip.className = `team-chip ${isBye ? 'is-bye' : ''}`;
         chip.innerHTML = `
             <span class="dept-icon">${team.dept.split(' ')[0]}</span>
             <span>${team.name}</span>
-            ${isBye ? '<span style="font-size:0.7rem; color:var(--bye-text); margin-left:4px;">(부전승)</span>' : ''}
+            ${isBye ? '<span class="bye-tag-mini">(4강 직행)</span>' : ''}
         `;
         container.appendChild(chip);
     });
@@ -71,20 +60,17 @@ function renderBracket() {
     const r1 = document.getElementById('round-1-matches');
     const r2 = document.getElementById('round-2-matches');
     const r3 = document.getElementById('round-3-matches');
-    const r4 = document.getElementById('round-4-matches');
 
-    r1.innerHTML = '';
-    r2.innerHTML = '';
-    r3.innerHTML = '';
-    r4.innerHTML = '';
+    if (r1) r1.innerHTML = '';
+    if (r2) r2.innerHTML = '';
+    if (r3) r3.innerHTML = '';
 
     Object.values(matchData).forEach(match => {
         const card = createMatchCard(match);
 
-        if (match.round === 1) r1.appendChild(card);
-        else if (match.round === 2) r2.appendChild(card);
-        else if (match.round === 3) r3.appendChild(card);
-        else if (match.round === 4) r4.appendChild(card);
+        if (match.round === 1 && r1) r1.appendChild(card);
+        else if (match.round === 2 && r2) r2.appendChild(card);
+        else if (match.round === 3 && r3) r3.appendChild(card);
     });
 
     updatePodium();
@@ -103,16 +89,19 @@ function createMatchCard(match) {
     const isWinner1 = match.winner && match.winner === match.team1;
     const isWinner2 = match.winner && match.winner === match.team2;
 
+    const isPK = match.pk1 !== null && match.pk2 !== null;
+
     card.innerHTML = `
         <div class="match-header">
             <span class="match-code">${match.title}</span>
-            <span>${match.id}</span>
+            <span class="match-id">${match.id}</span>
         </div>
         <div class="teams-container">
             <div class="team-row ${isWinner1 ? 'winner' : ''} ${match.isBye1 ? 'bye-row' : ''}">
                 <div class="team-name-group">
                     <span class="team-name">${team1Text}</span>
                     ${match.isBye1 ? '<span class="bye-tag">부전승</span>' : ''}
+                    ${isPK ? `<span class="pk-badge">PK ${match.pk1}</span>` : ''}
                 </div>
                 <span class="score">${score1Text}</span>
             </div>
@@ -120,12 +109,13 @@ function createMatchCard(match) {
                 <div class="team-name-group">
                     <span class="team-name">${team2Text}</span>
                     ${match.isBye2 ? '<span class="bye-tag">부전승</span>' : ''}
+                    ${isPK ? `<span class="pk-badge">PK ${match.pk2}</span>` : ''}
                 </div>
                 <span class="score">${score2Text}</span>
             </div>
         </div>
         <div class="match-actions">
-            ${(match.team1 && match.team2) ? `<button class="btn-edit-score" onclick="openScoreModal('${match.id}')">✏️ 경기 결과 입력</button>` : '<span style="font-size:0.75rem; color:var(--text-dim);">대진 대기 중</span>'}
+            ${(match.team1 && match.team2) ? `<button class="btn-edit-score" onclick="openScoreModal('${match.id}')">✏️ 경기 결과 입력</button>` : '<span class="waiting-text">대진 대기 중</span>'}
         </div>
     `;
 
@@ -141,13 +131,35 @@ window.openScoreModal = function(matchId) {
     document.getElementById('modal-match-title').innerText = `${match.title} (${match.id}) 결과 입력`;
     document.getElementById('modal-team1-name').innerText = match.team1;
     document.getElementById('modal-team2-name').innerText = match.team2;
-    document.getElementById('modal-team1-score').value = match.score1 !== null ? match.score1 : 0;
-    document.getElementById('modal-team2-score').value = match.score2 !== null ? match.score2 : 0;
-    document.getElementById('modal-is-pk').checked = false;
-    document.getElementById('modal-pk-detail').style.display = 'none';
+    
+    document.getElementById('modal-pk-team1-label').innerText = `${match.team1} (PK)`;
+    document.getElementById('modal-pk-team2-label').innerText = `${match.team2} (PK)`;
+
+    const s1 = match.score1 !== null ? match.score1 : 0;
+    const s2 = match.score2 !== null ? match.score2 : 0;
+
+    document.getElementById('modal-team1-score').value = s1;
+    document.getElementById('modal-team2-score').value = s2;
+    
+    document.getElementById('modal-team1-pk').value = match.pk1 !== null ? match.pk1 : 0;
+    document.getElementById('modal-team2-pk').value = match.pk2 !== null ? match.pk2 : 0;
+
+    checkTieAndTogglePK();
 
     document.getElementById('match-modal').classList.add('active');
 };
+
+function checkTieAndTogglePK() {
+    const s1 = parseInt(document.getElementById('modal-team1-score').value, 10);
+    const s2 = parseInt(document.getElementById('modal-team2-score').value, 10);
+
+    const pkContainer = document.getElementById('modal-pk-container');
+    if (!isNaN(s1) && !isNaN(s2) && s1 === s2) {
+        pkContainer.style.display = 'block';
+    } else {
+        pkContainer.style.display = 'none';
+    }
+}
 
 function closeModal() {
     document.getElementById('match-modal').classList.remove('active');
@@ -159,23 +171,61 @@ function saveScore() {
     if (!currentEditingMatchId) return;
 
     const match = matchData[currentEditingMatchId];
-    const score1 = parseInt(document.getElementById('modal-team1-score').value, 10) || 0;
-    const score2 = parseInt(document.getElementById('modal-team2-score').value, 10) || 0;
+    const score1Input = document.getElementById('modal-team1-score').value;
+    const score2Input = document.getElementById('modal-team2-score').value;
 
-    if (score1 === score2) {
-        alert('토너먼트는 동점으로 종료될 수 없습니다. 승부차기(PK) 결과를 포함해 승자를 결정해주세요!');
+    if (score1Input === '' || score2Input === '') {
+        alert('정규시간 점수를 입력해 주세요!');
         return;
     }
 
-    match.score1 = score1;
-    match.score2 = score2;
+    const score1 = parseInt(score1Input, 10);
+    const score2 = parseInt(score2Input, 10);
 
-    if (score1 > score2) {
-        match.winner = match.team1;
-        match.loser = match.team2;
+    if (score1 === score2) {
+        // Tied score -> Check PK inputs
+        const pk1Input = document.getElementById('modal-team1-pk').value;
+        const pk2Input = document.getElementById('modal-team2-pk').value;
+
+        if (pk1Input === '' || pk2Input === '') {
+            alert('정규시간이 동점입니다. 승부차기(PK) 점수를 기입해 주세요!');
+            return;
+        }
+
+        const pk1 = parseInt(pk1Input, 10);
+        const pk2 = parseInt(pk2Input, 10);
+
+        if (pk1 === pk2) {
+            alert('승부차기(PK) 점수가 동일할 수 없습니다. 승자를 판가름할 수 있도록 PK 점수를 다르게 입력해 주세요!');
+            return;
+        }
+
+        match.score1 = score1;
+        match.score2 = score2;
+        match.pk1 = pk1;
+        match.pk2 = pk2;
+
+        if (pk1 > pk2) {
+            match.winner = match.team1;
+            match.loser = match.team2;
+        } else {
+            match.winner = match.team2;
+            match.loser = match.team1;
+        }
     } else {
-        match.winner = match.team2;
-        match.loser = match.team1;
+        // Regular win/loss
+        match.score1 = score1;
+        match.score2 = score2;
+        match.pk1 = null;
+        match.pk2 = null;
+
+        if (score1 > score2) {
+            match.winner = match.team1;
+            match.loser = match.team2;
+        } else {
+            match.winner = match.team2;
+            match.loser = match.team1;
+        }
     }
 
     // Propagate Winner to Next Match
@@ -194,43 +244,38 @@ function saveScore() {
 
 // Update Podium Display
 function updatePodium() {
-    const finalMatch = matchData['M10'];
-    const thirdMatch = matchData['M11'];
+    const finalMatch = matchData['M5'];
+    const thirdMatch = matchData['M6'];
 
     document.getElementById('place-1').innerText = finalMatch.winner || '미정';
     document.getElementById('place-2').innerText = finalMatch.loser || '미정';
     document.getElementById('place-3').innerText = thirdMatch.winner || '미정';
 }
 
-// Shuffle Bracket Randomly
+// Shuffle Bracket Randomly for 6 Departments
 function shuffleBracket() {
-    if (!confirm('대진표를 무작위로 재배치하시겠습니까? (기존 점수는 초기화됩니다)')) return;
+    if (!confirm('대진표를 무작위로 재배치하시겠습니까? (기존 경기 점수는 초기화됩니다)')) return;
 
-    // Shuffle 11 team names
+    // Shuffle 6 team names
     const teamNames = INITIAL_TEAMS.map(t => t.name).sort(() => Math.random() - 0.5);
 
-    // Pick 5 teams for BYE
-    const byeTeams = teamNames.slice(0, 5);
-    const round1Teams = teamNames.slice(5);
+    // Pick 2 teams for BYE in 4강
+    const bye1 = teamNames[0];
+    const bye2 = teamNames[1];
+    const r1Teams = teamNames.slice(2);
 
-    // Reset matchData
     matchData = {
-        'M1': { id: 'M1', round: 1, title: '예선 1경기', team1: round1Teams[0], team2: round1Teams[1], score1: null, score2: null, winner: null, nextMatch: 'M4', nextSlot: 'team2' },
-        'M2': { id: 'M2', round: 1, title: '예선 2경기', team1: round1Teams[2], team2: round1Teams[3], score1: null, score2: null, winner: null, nextMatch: 'M5', nextSlot: 'team2' },
-        'M3': { id: 'M3', round: 1, title: '예선 3경기', team1: round1Teams[4], team2: round1Teams[5], score1: null, score2: null, winner: null, nextMatch: 'M6', nextSlot: 'team2' },
+        'M1': { id: 'M1', round: 1, title: '예선 1경기', team1: r1Teams[0], team2: r1Teams[1], score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null, nextMatch: 'M3', nextSlot: 'team2' },
+        'M2': { id: 'M2', round: 1, title: '예선 2경기', team1: r1Teams[2], team2: r1Teams[3], score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null, nextMatch: 'M4', nextSlot: 'team2' },
 
-        'M4': { id: 'M4', round: 2, title: '8강 1경기', team1: byeTeams[0], isBye1: true, team2: null, score1: null, score2: null, winner: null, nextMatch: 'M8', nextSlot: 'team1' },
-        'M5': { id: 'M5', round: 2, title: '8강 2경기', team1: byeTeams[1], isBye1: true, team2: null, score1: null, score2: null, winner: null, nextMatch: 'M8', nextSlot: 'team2' },
-        'M6': { id: 'M6', round: 2, title: '8강 3경기', team1: byeTeams[2], isBye1: true, team2: null, score1: null, score2: null, winner: null, nextMatch: 'M9', nextSlot: 'team1' },
-        'M7': { id: 'M7', round: 2, title: '8강 4경기', team1: byeTeams[3], isBye1: true, team2: byeTeams[4], isBye2: true, score1: null, score2: null, winner: null, nextMatch: 'M9', nextSlot: 'team2' },
+        'M3': { id: 'M3', round: 2, title: '준결승 1경기', team1: bye1, isBye1: true, team2: null, score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null, nextMatch: 'M5', nextSlot: 'team1', loserMatch: 'M6', loserSlot: 'team1' },
+        'M4': { id: 'M4', round: 2, title: '준결승 2경기', team1: bye2, isBye1: true, team2: null, score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null, nextMatch: 'M5', nextSlot: 'team2', loserMatch: 'M6', loserSlot: 'team2' },
 
-        'M8': { id: 'M8', round: 3, title: '준결승 1경기', team1: null, team2: null, score1: null, score2: null, winner: null, loser: null, nextMatch: 'M10', nextSlot: 'team1', loserMatch: 'M11', loserSlot: 'team1' },
-        'M9': { id: 'M9', round: 3, title: '준결승 2경기', team1: null, team2: null, score1: null, score2: null, winner: null, loser: null, nextMatch: 'M10', nextSlot: 'team2', loserMatch: 'M11', loserSlot: 'team2' },
-
-        'M10': { id: 'M10', round: 4, title: '🏆 결승전', isFinal: true, team1: null, team2: null, score1: null, score2: null, winner: null, loser: null },
-        'M11': { id: 'M11', round: 4, title: '🥉 3·4위 결정전', is3rd: true, team1: null, team2: null, score1: null, score2: null, winner: null, loser: null }
+        'M5': { id: 'M5', round: 3, title: '🏆 결승전', isFinal: true, team1: null, team2: null, score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null },
+        'M6': { id: 'M6', round: 3, title: '🥉 3·4위 결정전', is3rd: true, team1: null, team2: null, score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null }
     };
 
+    renderTeamChips();
     renderBracket();
 }
 
@@ -239,22 +284,17 @@ function resetBracket() {
     if (!confirm('대진표를 초기 상태로 리셋하시겠습니까?')) return;
     
     matchData = {
-        'M1': { id: 'M1', round: 1, title: '예선 1경기', team1: '전기 3-1', team2: '기계 3-1', score1: null, score2: null, winner: null, nextMatch: 'M4', nextSlot: 'team2' },
-        'M2': { id: 'M2', round: 1, title: '예선 2경기', team1: '기계 3-2', team2: '기계 3-3', score1: null, score2: null, winner: null, nextMatch: 'M5', nextSlot: 'team2' },
-        'M3': { id: 'M3', round: 1, title: '예선 3경기', team1: '자동차 3-1', team2: '자동차 3-2', score1: null, score2: null, winner: null, nextMatch: 'M6', nextSlot: 'team2' },
+        'M1': { id: 'M1', round: 1, title: '예선 1경기', team1: '전기과', team2: '기계과', score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null, nextMatch: 'M3', nextSlot: 'team2' },
+        'M2': { id: 'M2', round: 1, title: '예선 2경기', team1: '산업설비과', team2: '자동차과', score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null, nextMatch: 'M4', nextSlot: 'team2' },
 
-        'M4': { id: 'M4', round: 2, title: '8강 1경기', team1: '전기 3-2', isBye1: true, team2: null, score1: null, score2: null, winner: null, nextMatch: 'M8', nextSlot: 'team1' },
-        'M5': { id: 'M5', round: 2, title: '8강 2경기', team1: '산업설비 3-1', isBye1: true, team2: null, score1: null, score2: null, winner: null, nextMatch: 'M8', nextSlot: 'team2' },
-        'M6': { id: 'M6', round: 2, title: '8강 3경기', team1: '스마트금형 3-1', isBye1: true, team2: null, score1: null, score2: null, winner: null, nextMatch: 'M9', nextSlot: 'team1' },
-        'M7': { id: 'M7', round: 2, title: '8강 4경기', team1: '건축토목 3-1', isBye1: true, team2: '건축토목 3-2', isBye2: true, score1: null, score2: null, winner: null, nextMatch: 'M9', nextSlot: 'team2' },
+        'M3': { id: 'M3', round: 2, title: '준결승 1경기', team1: '스마트금형과', isBye1: true, team2: null, score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null, nextMatch: 'M5', nextSlot: 'team1', loserMatch: 'M6', loserSlot: 'team1' },
+        'M4': { id: 'M4', round: 2, title: '준결승 2경기', team1: '건축토목과', isBye1: true, team2: null, score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null, nextMatch: 'M5', nextSlot: 'team2', loserMatch: 'M6', loserSlot: 'team2' },
 
-        'M8': { id: 'M8', round: 3, title: '준결승 1경기', team1: null, team2: null, score1: null, score2: null, winner: null, loser: null, nextMatch: 'M10', nextSlot: 'team1', loserMatch: 'M11', loserSlot: 'team1' },
-        'M9': { id: 'M9', round: 3, title: '준결승 2경기', team1: null, team2: null, score1: null, score2: null, winner: null, loser: null, nextMatch: 'M10', nextSlot: 'team2', loserMatch: 'M11', loserSlot: 'team2' },
-
-        'M10': { id: 'M10', round: 4, title: '🏆 결승전', isFinal: true, team1: null, team2: null, score1: null, score2: null, winner: null, loser: null },
-        'M11': { id: 'M11', round: 4, title: '🥉 3·4위 결정전', is3rd: true, team1: null, team2: null, score1: null, score2: null, winner: null, loser: null }
+        'M5': { id: 'M5', round: 3, title: '🏆 결승전', isFinal: true, team1: null, team2: null, score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null },
+        'M6': { id: 'M6', round: 3, title: '🥉 3·4위 결정전', is3rd: true, team1: null, team2: null, score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null }
     };
 
+    renderTeamChips();
     renderBracket();
 }
 
@@ -267,7 +307,29 @@ function setupEventListeners() {
     document.getElementById('modal-cancel-btn').addEventListener('click', closeModal);
     document.getElementById('modal-save-btn').addEventListener('click', saveScore);
 
-    document.getElementById('modal-is-pk').addEventListener('change', (e) => {
-        document.getElementById('modal-pk-detail').style.display = e.target.checked ? 'block' : 'none';
+    // Dynamic PK display when score changes in modal
+    document.getElementById('modal-team1-score').addEventListener('input', checkTieAndTogglePK);
+    document.getElementById('modal-team2-score').addEventListener('input', checkTieAndTogglePK);
+}
+
+// Setup Banner Tab Switcher Logic
+function setupBanners() {
+    const bannerCards = document.querySelectorAll('.banner-card');
+    const panels = document.querySelectorAll('.banner-panel');
+
+    bannerCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const target = card.getAttribute('data-banner');
+
+            bannerCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+
+            panels.forEach(panel => {
+                panel.classList.remove('active');
+                if (panel.id === `panel-${target}`) {
+                    panel.classList.add('active');
+                }
+            });
+        });
     });
 }
