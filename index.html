@@ -3,42 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3학년 학급 대항 축구 토너먼트 대진표</title>
+    <title>춘천기계공업고등학교 | 3학년 학급 대항 축구 토너먼트</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Top Sports Navbar -->
+    <nav class="sports-navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo-wrapper">
+                    <img src="ccm.jpg" alt="춘천기계공업고등학교 로고" class="school-logo">
+                </div>
+                <div class="brand-titles">
+                    <span class="school-name">춘천기계공업고등학교</span>
+                    <span class="league-tag">2026 3RD GRADE CHAMPIONS LEAGUE</span>
+                </div>
+            </div>
+            <div class="nav-status">
+                <span class="live-pill"><span class="pulse-dot"></span> LIVE TOURNAMENT</span>
+            </div>
+        </div>
+    </nav>
+
     <div class="app-container">
-        <!-- Header -->
+        <!-- Main Sports Hero Header -->
         <header class="app-header">
-            <div class="header-content">
-                <div class="badge">2026학년도 3학년 체육대회</div>
-                <h1>⚽ 3학년 학급 대항 축구 토너먼트 🏆</h1>
-                <p class="subtitle">참여 학급: 11개 학급 (전기, 기계, 산업설비, 자동차, 스마트금형, 건축토목)</p>
+            <div class="header-main">
+                <div class="league-badge-group">
+                    <span class="badge badge-primary">2026학년도 체육대회</span>
+                    <span class="badge badge-sub">3학년 축구 리그</span>
+                </div>
+                <h1 class="main-title">
+                    <span class="icon">⚽</span> 3학년 학급 대항 축구 토너먼트
+                </h1>
+                <p class="subtitle">전기 · 기계 · 산업설비 · 자동차 · 스마트금형 · 건축토목 (총 11개 학급 토너먼트)</p>
             </div>
             <div class="header-actions">
-                <button id="btn-shuffle" class="btn btn-secondary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+                <button id="btn-shuffle" class="btn btn-action">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
                     대진 무작위 셔플
                 </button>
                 <button id="btn-reset" class="btn btn-secondary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-                    기본 대진 초기화
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                    대진 초기화
                 </button>
-                <button id="btn-print" class="btn btn-primary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+                <button id="btn-print" class="btn btn-accent">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
                     대진표 인쇄 / PDF
                 </button>
             </div>
         </header>
 
         <!-- Team Status Chips -->
-        <section class="teams-overview">
-            <div class="section-title">
-                <span>참가 학급 명단 (총 11개 반)</span>
-                <span class="bye-badge">부전승 5개 학급 자동 8강 직행</span>
+        <section class="teams-overview card-box">
+            <div class="section-header">
+                <div class="section-title">
+                    <h2>🔥 참가 학급 명단</h2>
+                    <span class="teams-count">총 11개 팀</span>
+                </div>
+                <div class="bye-info-pill">
+                    <span class="info-icon">💡</span>
+                    <span>부전승 <strong>5개 학급</strong> 8강 직행 (BYE)</span>
+                </div>
             </div>
             <div class="teams-grid" id="teams-chips">
                 <!-- Team chips injected by JS -->
@@ -46,23 +75,27 @@
         </section>
 
         <!-- Bracket Area -->
-        <main class="bracket-wrapper">
+        <main class="bracket-wrapper card-box">
+            <div class="bracket-header">
+                <h2>🏆 토너먼트 대진표 (TOURNAMENT BRACKET)</h2>
+                <p>각 경기 카드의 [✏️ 결과 입력] 버튼을 눌러 점수를 기록하면 다음 라운드 진출팀이 자동으로 반영됩니다.</p>
+            </div>
             <div class="bracket-container" id="bracket">
                 <!-- Round 1: 예선전 -->
                 <div class="round round-1">
-                    <h3 class="round-title"><span class="step-num">1</span> 예선전 (6개 학급 / 3경기)</h3>
+                    <h3 class="round-title"><span class="step-num">1</span> 예선전 <small>(6개 학급 / 3경기)</small></h3>
                     <div class="match-list" id="round-1-matches"></div>
                 </div>
 
                 <!-- Round 2: 8강전 -->
                 <div class="round round-2">
-                    <h3 class="round-title"><span class="step-num">2</span> 8강전 (8개 학급 / 4경기)</h3>
+                    <h3 class="round-title"><span class="step-num">2</span> 8강전 <small>(8개 학급 / 4경기)</small></h3>
                     <div class="match-list" id="round-2-matches"></div>
                 </div>
 
                 <!-- Round 3: 4강전 (준결승) -->
                 <div class="round round-3">
-                    <h3 class="round-title"><span class="step-num">3</span> 4강전 (준결승 / 2경기)</h3>
+                    <h3 class="round-title"><span class="step-num">3</span> 4강 준결승 <small>(2경기)</small></h3>
                     <div class="match-list" id="round-3-matches"></div>
                 </div>
 
@@ -75,19 +108,23 @@
         </main>
 
         <!-- Podium & Champion Display -->
-        <section class="champion-section" id="champion-display">
-            <h2>🏆 대회 결과 및 시상 🏆</h2>
+        <section class="champion-section card-box" id="champion-display">
+            <div class="champion-header">
+                <span class="trophy-badge">CHAMPIONSHIP PODIUM</span>
+                <h2>🏆 대회 최종 시상 (HONOR ROLL) 🏆</h2>
+            </div>
             <div class="podium">
                 <div class="podium-item silver">
-                    <div class="rank">🥈 준우승</div>
+                    <div class="rank-badge">🥈 준우승</div>
                     <div class="team-name" id="place-2">미정</div>
                 </div>
                 <div class="podium-item gold">
-                    <div class="rank">🥇 우승</div>
+                    <div class="trophy-icon">🏆</div>
+                    <div class="rank-badge">🥇 최종 우승</div>
                     <div class="team-name" id="place-1">미정</div>
                 </div>
                 <div class="podium-item bronze">
-                    <div class="rank">🥉 3위</div>
+                    <div class="rank-badge">🥉 3위</div>
                     <div class="team-name" id="place-3">미정</div>
                 </div>
             </div>
@@ -95,21 +132,25 @@
 
         <!-- Rules & Info Footer -->
         <footer class="app-footer">
-            <div class="rules-card">
+            <div class="rules-card card-box">
                 <h3>📌 토너먼트 대진 규칙 및 참고사항</h3>
                 <ul>
                     <li><strong>참가 팀:</strong> 총 11개 학급 (전기 3-1, 3-2 / 기계 3-1, 3-2, 3-3 / 산업설비 3-1 / 자동차 3-1, 3-2 / 스마트금형 3-1 / 건축토목 3-1, 3-2)</li>
-                    <li><strong>부전승 혜택:</strong> 총 11개 팀 중 5개 팀은 부전승(BYE)을 받아 8강으로 바로 진출합니다.</li>
-                    <li><strong>승패 기록:</strong> 각 경기 카드의 점수를 입력하면 자동으로 다음 라운드 진출 팀이 업데이트됩니다.</li>
-                    <li><strong>3/4위전:</strong> 준결승(4강) 패자 두 팀 간의 3위 결정전이 결승전과 함께 진행됩니다.</li>
+                    <li><strong>부전승(BYE):</strong> 11개 팀 대진 특성상 5개 팀은 부전승으로 8강전에 직행합니다.</li>
+                    <li><strong>승패 기록:</strong> 경기 카드에서 점수를 승부차기 포함하여 입력 시, 승리 학급이 실시간 자동 진출합니다.</li>
+                    <li><strong>3·4위전:</strong> 4강(준결승) 패자 두 팀 간의 3위 결정전이 결승전과 함께 개최됩니다.</li>
                 </ul>
+            </div>
+            <div class="copyright">
+                <img src="ccm.jpg" alt="학교 로고" class="footer-logo">
+                <span>춘천기계공업고등학교 3학년 체육대회 축구 대진표 시스템</span>
             </div>
         </footer>
     </div>
 
     <!-- Match Modal for Score Entry -->
     <div class="modal-backdrop" id="match-modal">
-        <div class="modal-content">
+        <div class="modal-content card-box">
             <div class="modal-header">
                 <h3 id="modal-match-title">경기 결과 입력</h3>
                 <button class="modal-close" id="modal-close-btn">&times;</button>
@@ -120,22 +161,23 @@
                         <span class="modal-team-name" id="modal-team1-name">팀 1</span>
                         <input type="number" id="modal-team1-score" min="0" max="99" value="0">
                     </div>
-                    <div class="vs-text">VS</div>
+                    <div class="vs-badge">VS</div>
                     <div class="team-score-box">
                         <span class="modal-team-name" id="modal-team2-name">팀 2</span>
                         <input type="number" id="modal-team2-score" min="0" max="99" value="0">
                     </div>
                 </div>
                 <div class="pk-option">
-                    <label>
-                        <input type="checkbox" id="modal-is-pk"> 승부차기(PK) 적용
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="modal-is-pk">
+                        <span>승부차기(PK) 적용</span>
                     </label>
                     <input type="text" id="modal-pk-detail" placeholder="예: PK 4:3" style="display:none;">
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" id="modal-cancel-btn">취소</button>
-                <button class="btn btn-primary" id="modal-save-btn">결과 저장</button>
+                <button class="btn btn-accent" id="modal-save-btn">결과 저장</button>
             </div>
         </div>
     </div>
