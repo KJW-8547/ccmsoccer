@@ -1,4 +1,4 @@
-// CCM Champions League - 6개 학과 토너먼트 로직
+// CCM Champions League - 6개 학과 축구 토너먼트 로직
 
 const INITIAL_TEAMS = [
     { id: 'elec', name: '전기과', dept: '⚡ 전기과' },
@@ -9,8 +9,7 @@ const INITIAL_TEAMS = [
     { id: 'arch', name: '건축토목과', dept: '🏗️ 건축토목과' }
 ];
 
-// Initial default bracket mapping (6 Teams)
-// Round 1 (예선전 6강): 2 matches (4 teams). 2 teams BYE directly to 4강 준결승.
+// Initial default 6-team bracket data
 let matchData = {
     // Round 1: 예선전 (6강)
     'M1': { id: 'M1', round: 1, title: '예선 1경기', team1: '전기과', team2: '기계과', score1: null, score2: null, pk1: null, pk2: null, winner: null, loser: null, nextMatch: 'M3', nextSlot: 'team2' },
@@ -31,15 +30,37 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTeamChips();
     renderBracket();
     setupEventListeners();
-    setupBanners();
+    setupBannerTabs();
 });
+
+// Setup Banner Horizontal Tabs to Switch Screens
+function setupBannerTabs() {
+    const tabs = document.querySelectorAll('.banner-tab');
+    const screens = document.querySelectorAll('.screen-view');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetScreenId = tab.getAttribute('data-screen');
+
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            screens.forEach(screen => {
+                screen.classList.remove('active');
+                if (screen.id === targetScreenId) {
+                    screen.classList.add('active');
+                }
+            });
+        });
+    });
+}
 
 // Render list of participating departments
 function renderTeamChips() {
     const container = document.getElementById('teams-chips');
+    if (!container) return;
     container.innerHTML = '';
 
-    // Check currently assigned BYE teams
     const byeTeams = [matchData['M3'].team1, matchData['M4'].team1];
 
     INITIAL_TEAMS.forEach(team => {
@@ -48,14 +69,14 @@ function renderTeamChips() {
         chip.className = `team-chip ${isBye ? 'is-bye' : ''}`;
         chip.innerHTML = `
             <span class="dept-icon">${team.dept.split(' ')[0]}</span>
-            <span>${team.name}</span>
-            ${isBye ? '<span class="bye-tag-mini">(4강 직행)</span>' : ''}
+            <span class="chip-name">${team.name}</span>
+            ${isBye ? '<span class="bye-pill">4강 직행</span>' : ''}
         `;
         container.appendChild(chip);
     });
 }
 
-// Render the Tournament Bracket
+// Render Tournament Bracket
 function renderBracket() {
     const r1 = document.getElementById('round-1-matches');
     const r2 = document.getElementById('round-2-matches');
@@ -92,13 +113,13 @@ function createMatchCard(match) {
     const isPK = match.pk1 !== null && match.pk2 !== null;
 
     card.innerHTML = `
-        <div class="match-header">
+        <div class="match-card-header">
             <span class="match-code">${match.title}</span>
-            <span class="match-id">${match.id}</span>
+            <span class="match-id-badge">${match.id}</span>
         </div>
         <div class="teams-container">
             <div class="team-row ${isWinner1 ? 'winner' : ''} ${match.isBye1 ? 'bye-row' : ''}">
-                <div class="team-name-group">
+                <div class="team-info">
                     <span class="team-name">${team1Text}</span>
                     ${match.isBye1 ? '<span class="bye-tag">부전승</span>' : ''}
                     ${isPK ? `<span class="pk-badge">PK ${match.pk1}</span>` : ''}
@@ -106,7 +127,7 @@ function createMatchCard(match) {
                 <span class="score">${score1Text}</span>
             </div>
             <div class="team-row ${isWinner2 ? 'winner' : ''} ${match.isBye2 ? 'bye-row' : ''}">
-                <div class="team-name-group">
+                <div class="team-info">
                     <span class="team-name">${team2Text}</span>
                     ${match.isBye2 ? '<span class="bye-tag">부전승</span>' : ''}
                     ${isPK ? `<span class="pk-badge">PK ${match.pk2}</span>` : ''}
@@ -114,7 +135,7 @@ function createMatchCard(match) {
                 <span class="score">${score2Text}</span>
             </div>
         </div>
-        <div class="match-actions">
+        <div class="match-card-actions">
             ${(match.team1 && match.team2) ? `<button class="btn-edit-score" onclick="openScoreModal('${match.id}')">✏️ 경기 결과 입력</button>` : '<span class="waiting-text">대진 대기 중</span>'}
         </div>
     `;
@@ -183,7 +204,6 @@ function saveScore() {
     const score2 = parseInt(score2Input, 10);
 
     if (score1 === score2) {
-        // Tied score -> Check PK inputs
         const pk1Input = document.getElementById('modal-team1-pk').value;
         const pk2Input = document.getElementById('modal-team2-pk').value;
 
@@ -196,7 +216,7 @@ function saveScore() {
         const pk2 = parseInt(pk2Input, 10);
 
         if (pk1 === pk2) {
-            alert('승부차기(PK) 점수가 동일할 수 없습니다. 승자를 판가름할 수 있도록 PK 점수를 다르게 입력해 주세요!');
+            alert('승부차기(PK) 점수가 동일할 수 없습니다. 승자를 정할 수 있도록 PK 점수를 다르게 기입해 주세요!');
             return;
         }
 
@@ -213,7 +233,6 @@ function saveScore() {
             match.loser = match.team1;
         }
     } else {
-        // Regular win/loss
         match.score1 = score1;
         match.score2 = score2;
         match.pk1 = null;
@@ -247,19 +266,21 @@ function updatePodium() {
     const finalMatch = matchData['M5'];
     const thirdMatch = matchData['M6'];
 
-    document.getElementById('place-1').innerText = finalMatch.winner || '미정';
-    document.getElementById('place-2').innerText = finalMatch.loser || '미정';
-    document.getElementById('place-3').innerText = thirdMatch.winner || '미정';
+    const p1 = document.getElementById('place-1');
+    const p2 = document.getElementById('place-2');
+    const p3 = document.getElementById('place-3');
+
+    if (p1) p1.innerText = finalMatch.winner || '미정';
+    if (p2) p2.innerText = finalMatch.loser || '미정';
+    if (p3) p3.innerText = thirdMatch.winner || '미정';
 }
 
 // Shuffle Bracket Randomly for 6 Departments
 function shuffleBracket() {
     if (!confirm('대진표를 무작위로 재배치하시겠습니까? (기존 경기 점수는 초기화됩니다)')) return;
 
-    // Shuffle 6 team names
     const teamNames = INITIAL_TEAMS.map(t => t.name).sort(() => Math.random() - 0.5);
 
-    // Pick 2 teams for BYE in 4강
     const bye1 = teamNames[0];
     const bye2 = teamNames[1];
     const r1Teams = teamNames.slice(2);
@@ -310,26 +331,4 @@ function setupEventListeners() {
     // Dynamic PK display when score changes in modal
     document.getElementById('modal-team1-score').addEventListener('input', checkTieAndTogglePK);
     document.getElementById('modal-team2-score').addEventListener('input', checkTieAndTogglePK);
-}
-
-// Setup Banner Tab Switcher Logic
-function setupBanners() {
-    const bannerCards = document.querySelectorAll('.banner-card');
-    const panels = document.querySelectorAll('.banner-panel');
-
-    bannerCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const target = card.getAttribute('data-banner');
-
-            bannerCards.forEach(c => c.classList.remove('active'));
-            card.classList.add('active');
-
-            panels.forEach(panel => {
-                panel.classList.remove('active');
-                if (panel.id === `panel-${target}`) {
-                    panel.classList.add('active');
-                }
-            });
-        });
-    });
 }
