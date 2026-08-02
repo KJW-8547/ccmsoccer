@@ -3,29 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>춘천기계공업고등학교 | 2026학년도 학과별 축구 토너먼트</title>
+    <title>춘천기계공업고등학교 | 2026 학과별 축구 토너먼트</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Chart.js for EA FC Radar Charts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Chart.js for 6-attribute Hexagon Radar Chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+
+    <!-- Always Visible Floating Bracket Shortcut Button -->
+    <a href="#section-bracket" class="floating-bracket-btn" id="floating-bracket-shortcut" title="어디서든 대진표로 이동">
+        <span class="pulse-ring"></span>
+        <span class="icon">🏆</span>
+        <span class="text">대진표 바로가기</span>
+    </a>
+
     <!-- Sticky Navigation Header -->
     <header class="navbar-header" id="main-header">
         <div class="header-container">
             <div class="nav-brand">
                 <img src="./ccm.jpg" alt="춘천기계공업고등학교 로고" class="header-logo">
-                <span class="school-title">춘천기계공업고등학교</span>
+                <div class="brand-titles">
+                    <span class="school-title">춘천기계공업고등학교</span>
+                    <span class="league-sub">CCM CHAMPIONS LEAGUE 2026</span>
+                </div>
             </div>
             <nav class="nav-menu">
                 <a href="#section-info" class="nav-link">🏫 대회정보</a>
-                <a href="#section-bracket" class="nav-link">🏆 토너먼트</a>
+                <a href="#section-bracket" class="nav-link highlight-bracket">🏆 토너먼트 대진표</a>
                 <a href="#section-history" class="nav-link">📊 역대 우승</a>
-                <a href="#section-power" class="nav-link">⚡ 전력분석</a>
-                <a href="#section-players" class="nav-link">⭐ 핵심 선수</a>
+                <a href="#section-power" class="nav-link">⚡ 학과 전력 & 선수</a>
                 <a href="#section-prizes" class="nav-link">💰 상금안내</a>
             </nav>
         </div>
@@ -35,36 +45,37 @@
     <section class="hero-section" id="hero">
         <div class="hero-container">
             <div class="hero-badge-group">
-                <span class="hero-badge badge-blue">CCM CHAMPIONS LEAGUE</span>
-                <span class="hero-badge badge-green">LIVE TOURNAMENT</span>
+                <span class="hero-badge badge-neon-blue">CCM CHAMPIONS LEAGUE</span>
+                <span class="hero-badge badge-neon-green">LIVE TOURNAMENT</span>
             </div>
             <div class="hero-icon">⚽</div>
             <h1 class="hero-title">
-                2026학년도<br>학과별 축구 토너먼트
+                2026학년도<br><span class="neon-text-gradient">학과별 축구 토너먼트</span>
             </h1>
             <p class="hero-subtitle">
-                총 11개 학과 참가 · 부전승 포함 · 실시간 경기 결과 반영
+                총 11개 학과 참가 · 부전승 시드 포함 · 실시간 경기 점수 & 진출 반영
             </p>
             <div class="hero-actions">
                 <a href="#section-bracket" class="btn btn-hero-primary">🏆 대진표 보기</a>
-                <button id="hero-btn-shuffle" class="btn btn-hero-action">🔀 대진표 추첨</button>
-                <button id="hero-btn-reset" class="btn btn-hero-secondary">🔄 초기화</button>
+                <button id="hero-btn-shuffle" class="btn btn-hero-action">🔀 대진표 추첨 (Shuffle)</button>
+                <button id="hero-btn-reset" class="btn btn-hero-secondary">🔄 초기화 (Reset)</button>
             </div>
         </div>
     </section>
 
     <div class="main-content-wrapper">
+
         <!-- Section 1: 대회 정보 -->
         <section class="app-section" id="section-info">
             <div class="section-title-box">
-                <span class="section-tag">INFORMATION</span>
-                <h2>🏫 대회 정보 (MATCH INFO)</h2>
+                <span class="section-tag">MATCH INFORMATION</span>
+                <h2>🏫 대회 공식 정보 (MATCH INFO)</h2>
             </div>
             <div class="info-cards-grid">
                 <div class="info-card">
                     <div class="info-icon">📍</div>
                     <h3>경기 장소</h3>
-                    <p>춘천기계공업고등학교 메인 인조잔디구장 (A/B 구역)</p>
+                    <p>춘천기계공업고등학교 메인 인조잔디구장 (A구역 / B구역)</p>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">⏰</div>
@@ -79,25 +90,28 @@
                 <div class="info-card">
                     <div class="info-icon">⚠️</div>
                     <h3>주의사항</h3>
-                    <p>유니폼 및 신가드 필수 착용, 경기 시작 10분 전 대기, 신사적인 페어플레이 준수</p>
+                    <p>유니폼 및 신가드 필수 착용, 경기 시작 10분 전 대기, 페어플레이 준수</p>
                 </div>
             </div>
         </section>
 
         <!-- Section 2: 토너먼트 대진표 -->
         <section class="app-section" id="section-bracket">
-            <div class="section-title-box">
-                <div class="title-with-actions">
-                    <div>
-                        <span class="section-tag">BRACKET</span>
-                        <h2>🏆 토너먼트 대진표 (TOURNAMENT BRACKET)</h2>
-                        <p class="section-desc">경기 결과 입력 시 다음 라운드로 승자 학과가 자동으로 진출합니다.</p>
+            <div class="bracket-header-row">
+                <div class="title-group">
+                    <span class="section-tag">TOURNAMENT BRACKET</span>
+                    <div class="bracket-title-flex">
+                        <h2>🏆 토너먼트 대진표</h2>
+                        <!-- Shuffle Button placed right next to bracket title as requested -->
+                        <button id="bracket-btn-shuffle" class="btn btn-bracket-shuffle" title="대진표 무작위 재배치">
+                            🔀 대진표 추첨 (Shuffle)
+                        </button>
                     </div>
-                    <div class="bracket-action-btns">
-                        <button id="bracket-btn-shuffle" class="btn btn-sm btn-action">🔀 Shuffle</button>
-                        <button id="bracket-btn-reset" class="btn btn-sm btn-secondary">🔄 Reset</button>
-                        <button id="bracket-btn-print" class="btn btn-sm btn-accent">🖨️ Print / PDF</button>
-                    </div>
+                    <p class="section-desc">경기 결과 입력 시 승자는 초록색(진출 🟢), 패자는 어둡게(탈락 🔴) 명확히 구분되며 승자가 자동 진출합니다.</p>
+                </div>
+                <div class="bracket-sub-btns">
+                    <button id="bracket-btn-reset" class="btn btn-sm btn-secondary">🔄 초기화</button>
+                    <button id="bracket-btn-print" class="btn btn-sm btn-accent">🖨️ 인쇄 / PDF</button>
                 </div>
             </div>
 
@@ -112,7 +126,7 @@
                 </div>
             </div>
 
-            <!-- Bracket Grid -->
+            <!-- Tournament Bracket Tree -->
             <div class="bracket-card card-box">
                 <div class="bracket-scroll-wrapper">
                     <div class="bracket-tree" id="bracket-tree">
@@ -147,9 +161,9 @@
         <!-- Section 3: 역대 우승 -->
         <section class="app-section" id="section-history">
             <div class="section-title-box">
-                <span class="section-tag">HISTORY</span>
-                <h2>📊 역대 우승 기록 (HALL OF FAME)</h2>
-                <p class="section-desc">2021년부터 2026년까지의 축구 토너먼트 명예의 전당</p>
+                <span class="section-tag">HALL OF FAME</span>
+                <h2>📊 역대 우승 기록 (2021년 ~ 2026년)</h2>
+                <p class="section-desc">춘천기계공업고등학교 축구 토너먼트 명예의 전당</p>
             </div>
             <div class="card-box history-card">
                 <div class="table-responsive">
@@ -164,12 +178,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr class="row-2026">
                                 <td><span class="year-badge current">2026년</span></td>
                                 <td><strong id="hist-2026-1" class="gold-text">진행 중 (대기)</strong></td>
                                 <td><span id="hist-2026-2" class="silver-text">진행 중</span></td>
                                 <td><span id="hist-2026-3" class="bronze-text">진행 중</span></td>
-                                <td><span class="text-sub">-</span></td>
+                                <td><span class="text-muted">-</span></td>
                             </tr>
                             <tr>
                                 <td><span class="year-badge">2025년</span></td>
@@ -212,163 +226,106 @@
             </div>
         </section>
 
-        <!-- Section 4: 학과 전력 분석 -->
+        <!-- Section 4 & 5 Combined: 학과 선택 시 한 과씩 상세 전력 & 3대 핵심선수(FW, MF, DF) 표시 -->
         <section class="app-section" id="section-power">
             <div class="section-title-box">
-                <span class="section-tag">ANALYSIS</span>
-                <h2>⚡ 학과 전력 분석 (TEAM POWER ANALYSIS)</h2>
-                <p class="section-desc">학과를 선택하여 종합 전력(OVR) 및 5대 핵심 능력을 분석해 보세요.</p>
+                <span class="section-tag">DEPARTMENT POWER & KEY PLAYERS</span>
+                <h2>⚡ 학과별 팀 전력 & 핵심 선수 (FW / MF / DF)</h2>
+                <p class="section-desc">학과를 선택하면 해당 학과의 육각형 능력치 레이더 차트, Overall, 전력 분석 및 FW, MF, DF 에이스 선수가 선명하게 표시됩니다.</p>
             </div>
-            <div class="card-box power-card-container">
-                <div class="power-controls">
-                    <label for="dept-select" class="select-label">학과 선택:</label>
-                    <select id="dept-select" class="dept-dropdown">
-                        <option value="elec">⚡ 전기과 (전기 3-1, 3-2)</option>
-                        <option value="mech" selected>⚙️ 기계과 (기계 3-1, 3-2, 3-3)</option>
-                        <option value="ind">🔧 산업설비과 (산업설비 3-1)</option>
-                        <option value="auto">🚗 자동차과 (자동차 3-1, 3-2)</option>
-                        <option value="mold">🔩 스마트금형과 (스마트금형 3-1)</option>
-                        <option value="arch">🏗️ 건축토목과 (건축토목 3-1, 3-2)</option>
-                    </select>
+
+            <!-- Department Selector Buttons -->
+            <div class="dept-selector-bar">
+                <button class="dept-tab-btn active" data-dept="mech">⚙️ 기계과</button>
+                <button class="dept-tab-btn" data-dept="elec">⚡ 전기과</button>
+                <button class="dept-tab-btn" data-dept="ind">🔧 산업설비과</button>
+                <button class="dept-tab-btn" data-dept="auto">🚗 자동차과</button>
+                <button class="dept-tab-btn" data-dept="mold">🔩 스마트금형과</button>
+                <button class="dept-tab-btn" data-dept="arch">🏗️ 건축토목과</button>
+            </div>
+
+            <!-- Single Active Department Detail Card Area -->
+            <div class="single-dept-view-card card-box" id="dept-detail-container">
+                
+                <!-- Top Row: Department Header & Overall Badge -->
+                <div class="dept-detail-header">
+                    <div class="dept-title-area">
+                        <h3 id="dept-name-heading" class="dept-big-title">⚙️ 기계과 전력 분석</h3>
+                        <span class="dept-subtitle-tag">CATHEDRAL OF MECHANICAL ENGINEERING</span>
+                    </div>
+                    <div class="ovr-hex-badge">
+                        <span class="ovr-label">OVERALL</span>
+                        <span class="ovr-val" id="dept-ovr-val">96</span>
+                    </div>
                 </div>
 
+                <!-- Middle Row: 6-Attribute Hexagon Radar Chart & Detailed Progress Bars -->
                 <div class="power-analysis-grid">
-                    <!-- Left: Radar Chart & OVR Badge -->
-                    <div class="power-left">
-                        <div class="ovr-display">
-                            <span class="ovr-title">OVERALL</span>
-                            <div class="ovr-number" id="dept-ovr-val">95</div>
-                            <span class="dept-name-badge" id="dept-name-display">⚙️ 기계과</span>
+                    <!-- Left: Hexagon Chart Box -->
+                    <div class="chart-box-neon">
+                        <div class="chart-header">
+                            <span>📊 6대 능력치 육각형 레이더 차트 (HEXAGON RADAR)</span>
                         </div>
                         <div class="chart-wrapper">
                             <canvas id="powerRadarChart"></canvas>
                         </div>
                     </div>
 
-                    <!-- Right: Progress Bars -->
-                    <div class="power-right">
-                        <h3 class="stat-section-title">스쿼드 5대 능력치 상세</h3>
+                    <!-- Right: Numeric Ratings & Progress Bars -->
+                    <div class="stats-bars-box">
+                        <h4 class="box-sub-title">🔥 6개 핵심 수치 명세 (NUMERIC STATS)</h4>
                         <div class="progress-list">
                             <div class="progress-item">
-                                <div class="prog-info"><span>공격력 (ATT)</span><strong id="val-att">96</strong></div>
-                                <div class="prog-bar-bg"><div class="prog-bar-fill" id="bar-att" style="width: 96%;"></div></div>
+                                <div class="prog-info"><span>공격력 (ATTACK)</span><strong id="val-att">96</strong></div>
+                                <div class="prog-bar-bg"><div class="prog-bar-fill fill-att" id="bar-att" style="width: 96%;"></div></div>
                             </div>
                             <div class="progress-item">
-                                <div class="prog-info"><span>수비력 (DEF)</span><strong id="val-def">92</strong></div>
-                                <div class="prog-bar-bg"><div class="prog-bar-fill" id="bar-def" style="width: 92%;"></div></div>
+                                <div class="prog-info"><span>수비력 (DEFENSE)</span><strong id="val-def">92</strong></div>
+                                <div class="prog-bar-bg"><div class="prog-bar-fill fill-def" id="bar-def" style="width: 92%;"></div></div>
                             </div>
                             <div class="progress-item">
-                                <div class="prog-info"><span>조직력 (TEAM)</span><strong id="val-team">97</strong></div>
-                                <div class="prog-bar-bg"><div class="prog-bar-fill" id="bar-team" style="width: 97%;"></div></div>
+                                <div class="prog-info"><span>조직력 (TEAMWORK)</span><strong id="val-team">97</strong></div>
+                                <div class="prog-bar-bg"><div class="prog-bar-fill fill-team" id="bar-team" style="width: 97%;"></div></div>
                             </div>
                             <div class="progress-item">
                                 <div class="prog-info"><span>기세 (MOMENTUM)</span><strong id="val-mom">94</strong></div>
-                                <div class="prog-bar-bg"><div class="prog-bar-fill" id="bar-mom" style="width: 94%;"></div></div>
+                                <div class="prog-bar-bg"><div class="prog-bar-fill fill-mom" id="bar-mom" style="width: 94%;"></div></div>
                             </div>
                             <div class="progress-item">
                                 <div class="prog-info"><span>전술 (TACTICS)</span><strong id="val-tac">95</strong></div>
-                                <div class="prog-bar-bg"><div class="prog-bar-fill" id="bar-tac" style="width: 95%;"></div></div>
+                                <div class="prog-bar-bg"><div class="prog-bar-fill fill-tac" id="bar-tac" style="width: 95%;"></div></div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="prog-info"><span>피지컬 (PHYSICAL)</span><strong id="val-phy">94</strong></div>
+                                <div class="prog-bar-bg"><div class="prog-bar-fill fill-phy" id="bar-phy" style="width: 94%;"></div></div>
                             </div>
                         </div>
 
-                        <!-- One Line Analysis Quote -->
+                        <!-- One Line Analysis Statement -->
                         <div class="analysis-quote-box">
                             <span class="quote-icon">💡</span>
-                            <p class="quote-text" id="dept-analysis-text">"기계과는 유기적인 패스워크와 완벽한 조직력을 갖춘 전통의 강력한 우승 후보입니다."</p>
+                            <p class="quote-text" id="dept-analysis-text">"기계과는 정교한 톱니바퀴 패스워크와 완벽한 조직력으로 피치를 지배하는 우승 0순위 팀입니다."</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 5: 핵심 선수 -->
-        <section class="app-section" id="section-players">
-            <div class="section-title-box">
-                <span class="section-tag">KEY PLAYERS</span>
-                <h2>⭐ 핵심 선수 프로필 (FEATURED PLAYERS)</h2>
-                <p class="section-desc">이번 대회 포지션별 최고의 활약이 기대되는 에이스 스타 플레이어</p>
-            </div>
-            <div class="players-cards-grid">
-                <!-- FW Card -->
-                <div class="eafc-card card-fw">
-                    <div class="card-inner">
-                        <div class="card-header-top">
-                            <span class="card-ovr">95</span>
-                            <span class="card-pos">FW</span>
-                        </div>
-                        <div class="card-avatar">
-                            <div class="avatar-circle">⚽</div>
-                        </div>
-                        <div class="card-info">
-                            <h3 class="player-name">김전기</h3>
-                            <span class="player-dept">⚡ 전기과 · 스트라이커</span>
-                        </div>
-                        <div class="player-stats-mini">
-                            <div class="stat-mini"><span>PAC</span><strong>92</strong></div>
-                            <div class="stat-mini"><span>SHO</span><strong>96</strong></div>
-                            <div class="stat-mini"><span>PAS</span><strong>88</strong></div>
-                            <div class="stat-mini"><span>DRI</span><strong>90</strong></div>
-                        </div>
-                        <p class="player-desc">전격 슈터! 압도적인 골 결정력과 폭발적인 침투 스피드를 보유한 공격의 핵심.</p>
                     </div>
                 </div>
 
-                <!-- MF Card -->
-                <div class="eafc-card card-mf">
-                    <div class="card-inner">
-                        <div class="card-header-top">
-                            <span class="card-ovr">96</span>
-                            <span class="card-pos">MF</span>
-                        </div>
-                        <div class="card-avatar">
-                            <div class="avatar-circle">🎯</div>
-                        </div>
-                        <div class="card-info">
-                            <h3 class="player-name">이기계</h3>
-                            <span class="player-dept">⚙️ 기계과 · 플레이메이커</span>
-                        </div>
-                        <div class="player-stats-mini">
-                            <div class="stat-mini"><span>PAC</span><strong>90</strong></div>
-                            <div class="stat-mini"><span>SHO</span><strong>91</strong></div>
-                            <div class="stat-mini"><span>PAS</span><strong>98</strong></div>
-                            <div class="stat-mini"><span>DRI</span><strong>95</strong></div>
-                        </div>
-                        <p class="player-desc">터빈 마스터! 중원에서 경기를 지배하며 자송곳 같은 칼날 패스를 찔러주는 에이스.</p>
+                <!-- Bottom Row: Selected Department's 3 Key Players (FW, MF, DF) -->
+                <div class="dept-players-section">
+                    <h4 class="players-section-title">⭐ <span id="dept-player-dept-name">⚙️ 기계과</span> 핵심 스타 플레이어 (FW / MF / DF)</h4>
+                    <div class="players-cards-grid" id="dept-players-grid">
+                        <!-- Dynamic Player Cards rendered by JS -->
                     </div>
                 </div>
 
-                <!-- DF Card -->
-                <div class="eafc-card card-df">
-                    <div class="card-inner">
-                        <div class="card-header-top">
-                            <span class="card-ovr">94</span>
-                            <span class="card-pos">DF</span>
-                        </div>
-                        <div class="card-avatar">
-                            <div class="avatar-circle">🛡️</div>
-                        </div>
-                        <div class="card-info">
-                            <h3 class="player-name">강건축</h3>
-                            <span class="player-dept">🏗️ 건축토목과 · 센터백</span>
-                        </div>
-                        <div class="player-stats-mini">
-                            <div class="stat-mini"><span>PAC</span><strong>86</strong></div>
-                            <div class="stat-mini"><span>DEF</span><strong>96</strong></div>
-                            <div class="stat-mini"><span>PHY</span><strong>97</strong></div>
-                            <div class="stat-mini"><span>HEA</span><strong>94</strong></div>
-                        </div>
-                        <p class="player-desc">통곡의 벽! 압도적인 피지컬과 강력한 헤더로 상대 공격을 철통 봉쇄하는 수비의 핵.</p>
-                    </div>
-                </div>
             </div>
         </section>
 
         <!-- Section 6: 상금 안내 -->
         <section class="app-section" id="section-prizes">
             <div class="section-title-box">
-                <span class="section-tag">PRIZES</span>
-                <h2>💰 대회 순위별 시상 안내 (PRIZE MONEY)</h2>
-                <p class="section-desc">우승, 준우승, 3위 학과에게 수여되는 전용 트로피 및 포상금</p>
+                <span class="section-tag">PRIZE MONEY & TROPHIES</span>
+                <h2>💰 대회 순위별 시상 안내 (PRIZES)</h2>
+                <p class="section-desc">우승, 준우승, 3위 학과에게 전달되는 공식 트로피 및 상금 안내</p>
             </div>
             <div class="card-box prizes-podium-container">
                 <div class="podium-stage">
@@ -439,7 +396,7 @@
                 <button class="modal-close" id="modal-close-btn">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="modal-sub-label">⏱️ 정규시간 스코어 기입</div>
+                <div class="modal-sub-label">⏱️ 정규시간 스코어 입력</div>
                 <div class="score-input-box">
                     <div class="team-score-cell">
                         <span class="team-label" id="modal-team1-name">팀 1</span>
