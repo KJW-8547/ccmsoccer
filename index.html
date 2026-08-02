@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>춘천기계공업고등학교 | 3학년 학급 대항 축구 토너먼트</title>
+    <title>CCM Champions League | 춘천기계공업고등학교 학과 대항 축구 토너먼트</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,14 +12,14 @@
 <body>
     <!-- Top Sports Navbar -->
     <nav class="sports-navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
+        <div class="nav-container centered-nav">
+            <div class="nav-brand centered-brand">
                 <div class="logo-wrapper">
                     <img src="ccm.jpg" alt="춘천기계공업고등학교 로고" class="school-logo">
                 </div>
                 <div class="brand-titles">
                     <span class="school-name">춘천기계공업고등학교</span>
-                    <span class="league-tag">2026 3RD GRADE CHAMPIONS LEAGUE</span>
+                    <span class="league-tag">CCM CHAMPIONS LEAGUE</span>
                 </div>
             </div>
             <div class="nav-status">
@@ -30,16 +30,19 @@
 
     <div class="app-container">
         <!-- Main Sports Hero Header -->
-        <header class="app-header">
+        <header class="app-header centered-header">
             <div class="header-main">
+                <div class="header-logo-badge">
+                    <img src="ccm.jpg" alt="CCM Logo" class="hero-logo">
+                </div>
                 <div class="league-badge-group">
                     <span class="badge badge-primary">2026학년도 체육대회</span>
-                    <span class="badge badge-sub">3학년 축구 리그</span>
+                    <span class="badge badge-sub">학과 대항전</span>
                 </div>
                 <h1 class="main-title">
-                    <span class="icon">⚽</span> 3학년 학급 대항 축구 토너먼트
+                    <span class="icon">⚽</span> CCM Champions League
                 </h1>
-                <p class="subtitle">전기 · 기계 · 산업설비 · 자동차 · 스마트금형 · 건축토목 (총 11개 학급 토너먼트)</p>
+                <p class="subtitle">전기과 · 기계과 · 산업설비과 · 자동차과 · 스마트금형과 · 건축토목과 (총 6개 학과 토너먼트)</p>
             </div>
             <div class="header-actions">
                 <button id="btn-shuffle" class="btn btn-action">
@@ -57,16 +60,358 @@
             </div>
         </header>
 
+        <!-- Top 4 Interactive Banners -->
+        <section class="banners-section">
+            <div class="banners-grid">
+                <!-- Banner 1 -->
+                <div class="banner-card active" data-banner="schedule" id="banner-btn-schedule">
+                    <div class="banner-header-row">
+                        <span class="banner-badge">BANNER 01</span>
+                        <span class="banner-icon">📅</span>
+                    </div>
+                    <h3>토너먼트 대진표</h3>
+                    <p class="banner-desc">경기 장소 및 시간 안내</p>
+                </div>
+                <!-- Banner 2 -->
+                <div class="banner-card" data-banner="history" id="banner-btn-history">
+                    <div class="banner-header-row">
+                        <span class="banner-badge">BANNER 02</span>
+                        <span class="banner-icon">📊</span>
+                    </div>
+                    <h3>역대 순위 기록</h3>
+                    <p class="banner-desc">학과별 역대 성적 (2021~2025)</p>
+                </div>
+                <!-- Banner 3 -->
+                <div class="banner-card" data-banner="power" id="banner-btn-power">
+                    <div class="banner-header-row">
+                        <span class="banner-badge">BANNER 03</span>
+                        <span class="banner-icon">⚡</span>
+                    </div>
+                    <h3>학과별 전력 & 선수</h3>
+                    <p class="banner-desc">팀 전력, 주요 선수 및 능력치</p>
+                </div>
+                <!-- Banner 4 -->
+                <div class="banner-card" data-banner="prizes" id="banner-btn-prizes">
+                    <div class="banner-header-row">
+                        <span class="banner-badge">BANNER 04</span>
+                        <span class="banner-icon">🎁</span>
+                    </div>
+                    <h3>순위별 상금 안내</h3>
+                    <p class="banner-desc">1위 · 2위 · 3위 상금 & 트로피</p>
+                </div>
+            </div>
+
+            <!-- Banner Content Viewers -->
+            <div class="banner-content-wrapper card-box">
+                <!-- Panel 1: Schedule & Location -->
+                <div class="banner-panel active" id="panel-schedule">
+                    <div class="panel-header">
+                        <h2>📅 경기 장소 및 시간표 (Schedule & Location)</h2>
+                        <span class="panel-subtitle">📍 장소: 춘천기계공업고등학교 메인 인조잔디구장 (A/B 구역)</span>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="schedule-item">
+                            <div class="schedule-time">09:30</div>
+                            <div class="schedule-badge">예선 1경기</div>
+                            <div class="schedule-detail">
+                                <strong>전기과 vs 기계과</strong>
+                                <span>A 구역 (메인 스탠드측)</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">10:45</div>
+                            <div class="schedule-badge">예선 2경기</div>
+                            <div class="schedule-detail">
+                                <strong>산업설비과 vs 자동차과</strong>
+                                <span>B 구역 (체육관측)</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item highlight">
+                            <div class="schedule-time">13:30</div>
+                            <div class="schedule-badge">준결승 1경기</div>
+                            <div class="schedule-detail">
+                                <strong>스마트금형과 (부전승) vs 예선 1 승자</strong>
+                                <span>A 구역</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item highlight">
+                            <div class="schedule-time">14:45</div>
+                            <div class="schedule-badge">준결승 2경기</div>
+                            <div class="schedule-detail">
+                                <strong>건축토목과 (부전승) vs 예선 2 승자</strong>
+                                <span>A 구역</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item bronze-match">
+                            <div class="schedule-time">16:00</div>
+                            <div class="schedule-badge">🥉 3·4위전</div>
+                            <div class="schedule-detail">
+                                <strong>준결승 1 패자 vs 준결승 2 패자</strong>
+                                <span>B 구역</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item final-match">
+                            <div class="schedule-time">17:00</div>
+                            <div class="schedule-badge">🏆 결승전</div>
+                            <div class="schedule-detail">
+                                <strong>준결승 1 승자 vs 준결승 2 승자</strong>
+                                <span>A 구역 (특설 무대)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel 2: Ranking History 2021-2025 -->
+                <div class="banner-panel" id="panel-history">
+                    <div class="panel-header">
+                        <h2>📊 학과별 역대 순위 기록 (2021년 ~ 2025년)</h2>
+                        <span class="panel-subtitle">🏆 최근 5년간 CCM Champions League 명예의 전당</span>
+                    </div>
+                    <div class="history-table-container">
+                        <table class="history-table">
+                            <thead>
+                                <tr>
+                                    <th>연도</th>
+                                    <th>🥇 우승 (1위)</th>
+                                    <th>🥈 준우승 (2위)</th>
+                                    <th>🥉 3위</th>
+                                    <th>M.V.P 학과</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="year-pill">2025</span></td>
+                                    <td><strong class="gold-text">⚙️ 기계과</strong></td>
+                                    <td><span class="silver-text">⚡ 전기과</span></td>
+                                    <td><span class="bronze-text">🚗 자동차과</span></td>
+                                    <td>⚙️ 기계과</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="year-pill">2024</span></td>
+                                    <td><strong class="gold-text">⚡ 전기과</strong></td>
+                                    <td><span class="silver-text">🏗️ 건축토목과</span></td>
+                                    <td><span class="bronze-text">⚙️ 기계과</span></td>
+                                    <td>⚡ 전기과</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="year-pill">2023</span></td>
+                                    <td><strong class="gold-text">🚗 자동차과</strong></td>
+                                    <td><span class="silver-text">⚙️ 기계과</span></td>
+                                    <td><span class="bronze-text">🔩 스마트금형과</span></td>
+                                    <td>🚗 자동차과</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="year-pill">2022</span></td>
+                                    <td><strong class="gold-text">⚙️ 기계과</strong></td>
+                                    <td><span class="silver-text">🔧 산업설비과</span></td>
+                                    <td><span class="bronze-text">⚡ 전기과</span></td>
+                                    <td>⚙️ 기계과</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="year-pill">2021</span></td>
+                                    <td><strong class="gold-text">⚡ 전기과</strong></td>
+                                    <td><span class="silver-text">⚙️ 기계과</span></td>
+                                    <td><span class="bronze-text">🏗️ 건축토목과</span></td>
+                                    <td>⚡ 전기과</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Panel 3: Dept Power & Key Players -->
+                <div class="banner-panel" id="panel-power">
+                    <div class="panel-header">
+                        <h2>⚡ 학과별 팀 전력 & 주요 선수 능력치</h2>
+                        <span class="panel-subtitle">⚽ 6개 학과 분석 리포트 및 에이스 데이터</span>
+                    </div>
+                    <div class="power-cards-grid">
+                        <!-- 전기과 -->
+                        <div class="power-card">
+                            <div class="power-card-header">
+                                <h3>⚡ 전기과</h3>
+                                <span class="overall-badge">오버롤 92</span>
+                            </div>
+                            <div class="stats-bars">
+                                <div class="stat-row"><span>공격력</span><div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div><strong>90</strong></div>
+                                <div class="stat-row"><span>수비력</span><div class="bar-bg"><div class="bar-fill" style="width: 94%;"></div></div><strong>94</strong></div>
+                                <div class="stat-row"><span>조직력</span><div class="bar-bg"><div class="bar-fill" style="width: 92%;"></div></div><strong>92</strong></div>
+                            </div>
+                            <div class="player-info">
+                                <div class="player-title">⭐ 주요 선수</div>
+                                <div class="player-name">김전기 <small>(FW · 주장)</small></div>
+                                <div class="player-stats">
+                                    <span class="stat-chip">슈팅 93</span>
+                                    <span class="stat-chip">스피드 89</span>
+                                    <span class="stat-chip">체력 95</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 기계과 -->
+                        <div class="power-card">
+                            <div class="power-card-header">
+                                <h3>⚙️ 기계과</h3>
+                                <span class="overall-badge gold">오버롤 95</span>
+                            </div>
+                            <div class="stats-bars">
+                                <div class="stat-row"><span>공격력</span><div class="bar-bg"><div class="bar-fill" style="width: 96%;"></div></div><strong>96</strong></div>
+                                <div class="stat-row"><span>수비력</span><div class="bar-bg"><div class="bar-fill" style="width: 92%;"></div></div><strong>92</strong></div>
+                                <div class="stat-row"><span>조직력</span><div class="bar-bg"><div class="bar-fill" style="width: 97%;"></div></div><strong>97</strong></div>
+                            </div>
+                            <div class="player-info">
+                                <div class="player-title">⭐ 주요 선수</div>
+                                <div class="player-name">이기계 <small>(MF · 에이스)</small></div>
+                                <div class="player-stats">
+                                    <span class="stat-chip">슈팅 95</span>
+                                    <span class="stat-chip">패스 96</span>
+                                    <span class="stat-chip">드리블 94</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 산업설비과 -->
+                        <div class="power-card">
+                            <div class="power-card-header">
+                                <h3>🔧 산업설비과</h3>
+                                <span class="overall-badge">오버롤 88</span>
+                            </div>
+                            <div class="stats-bars">
+                                <div class="stat-row"><span>공격력</span><div class="bar-bg"><div class="bar-fill" style="width: 87%;"></div></div><strong>87</strong></div>
+                                <div class="stat-row"><span>수비력</span><div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div><strong>90</strong></div>
+                                <div class="stat-row"><span>조직력</span><div class="bar-bg"><div class="bar-fill" style="width: 89%;"></div></div><strong>89</strong></div>
+                            </div>
+                            <div class="player-info">
+                                <div class="player-title">⭐ 주요 선수</div>
+                                <div class="player-name">박설비 <small>(DF · 수비핵)</small></div>
+                                <div class="player-stats">
+                                    <span class="stat-chip">태클 93</span>
+                                    <span class="stat-chip">피지컬 91</span>
+                                    <span class="stat-chip">패스 88</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 자동차과 -->
+                        <div class="power-card">
+                            <div class="power-card-header">
+                                <h3>🚗 자동차과</h3>
+                                <span class="overall-badge">오버롤 91</span>
+                            </div>
+                            <div class="stats-bars">
+                                <div class="stat-row"><span>공격력</span><div class="bar-bg"><div class="bar-fill" style="width: 94%;"></div></div><strong>94</strong></div>
+                                <div class="stat-row"><span>수비력</span><div class="bar-bg"><div class="bar-fill" style="width: 86%;"></div></div><strong>86</strong></div>
+                                <div class="stat-row"><span>조직력</span><div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div><strong>90</strong></div>
+                            </div>
+                            <div class="player-info">
+                                <div class="player-title">⭐ 주요 선수</div>
+                                <div class="player-name">최엔진 <small>(FW · 스피드스터)</small></div>
+                                <div class="player-stats">
+                                    <span class="stat-chip">스피드 98</span>
+                                    <span class="stat-chip">골결정력 92</span>
+                                    <span class="stat-chip">순발력 95</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 스마트금형과 -->
+                        <div class="power-card">
+                            <div class="power-card-header">
+                                <h3>🔩 스마트금형과</h3>
+                                <span class="overall-badge">오버롤 89</span>
+                            </div>
+                            <div class="stats-bars">
+                                <div class="stat-row"><span>공격력</span><div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div><strong>88</strong></div>
+                                <div class="stat-row"><span>수비력</span><div class="bar-bg"><div class="bar-fill" style="width: 91%;"></div></div><strong>91</strong></div>
+                                <div class="stat-row"><span>조직력</span><div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div><strong>90</strong></div>
+                            </div>
+                            <div class="player-info">
+                                <div class="player-title">⭐ 주요 선수</div>
+                                <div class="player-name">정금형 <small>(GK · 수문장)</small></div>
+                                <div class="player-stats">
+                                    <span class="stat-chip">선방 94</span>
+                                    <span class="stat-chip">반응속도 95</span>
+                                    <span class="stat-chip">조율 89</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 건축토목과 -->
+                        <div class="power-card">
+                            <div class="power-card-header">
+                                <h3>🏗️ 건축토목과</h3>
+                                <span class="overall-badge">오버롤 90</span>
+                            </div>
+                            <div class="stats-bars">
+                                <div class="stat-row"><span>공격력</span><div class="bar-bg"><div class="bar-fill" style="width: 89%;"></div></div><strong>89</strong></div>
+                                <div class="stat-row"><span>수비력</span><div class="bar-bg"><div class="bar-fill" style="width: 93%;"></div></div><strong>93</strong></div>
+                                <div class="stat-row"><span>조직력</span><div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div><strong>88</strong></div>
+                            </div>
+                            <div class="player-info">
+                                <div class="player-title">⭐ 주요 선수</div>
+                                <div class="player-name">강토목 <small>(DF · 피지컬)</small></div>
+                                <div class="player-stats">
+                                    <span class="stat-chip">피지컬 96</span>
+                                    <span class="stat-chip">헤더 93</span>
+                                    <span class="stat-chip">대인마크 92</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel 4: Prizes by Rank -->
+                <div class="banner-panel" id="panel-prizes">
+                    <div class="panel-header">
+                        <h2>🎁 대회 순위별 상금 및 상품 안내</h2>
+                        <span class="panel-subtitle">🏆 CCM Champions League 시상 내역</span>
+                    </div>
+                    <div class="prizes-grid">
+                        <div class="prize-card gold">
+                            <div class="prize-crown">👑</div>
+                            <div class="prize-rank">1위 (최종 우승)</div>
+                            <div class="prize-amount">500,000 원</div>
+                            <ul class="prize-items">
+                                <li>🏆 CCM 우승 트로피 & 우승 깃발</li>
+                                <li>🥇 선수 전원 우승 금메달</li>
+                                <li>🎟️ 스포츠 용품 상품권 (50만원)</li>
+                            </ul>
+                        </div>
+                        <div class="prize-card silver">
+                            <div class="prize-crown">🥈</div>
+                            <div class="prize-rank">2위 (준우승)</div>
+                            <div class="prize-amount">300,000 원</div>
+                            <ul class="prize-items">
+                                <li>🏆 CCM 준우승 트로피</li>
+                                <li>🥈 선수 전원 은메달</li>
+                                <li>🎟️ 회식 지원 상품권 (30만원)</li>
+                            </ul>
+                        </div>
+                        <div class="prize-card bronze">
+                            <div class="prize-crown">🥉</div>
+                            <div class="prize-rank">3위</div>
+                            <div class="prize-amount">150,000 원</div>
+                            <ul class="prize-items">
+                                <li>🏆 CCM 3위 트로피</li>
+                                <li>🥉 선수 전원 동메달</li>
+                                <li>🎟️ 음료 및 간식 지원 (15만원)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Team Status Chips -->
         <section class="teams-overview card-box">
             <div class="section-header">
                 <div class="section-title">
-                    <h2>🔥 참가 학급 명단</h2>
-                    <span class="teams-count">총 11개 팀</span>
+                    <h2>🔥 참가 학과 명단 (6개 학과)</h2>
+                    <span class="teams-count">총 6개 학과</span>
                 </div>
                 <div class="bye-info-pill">
                     <span class="info-icon">💡</span>
-                    <span>부전승 <strong>5개 학급</strong> 8강 직행 (BYE)</span>
+                    <span>시드 추첨 부전승 <strong>2개 학과</strong> 4강 직행 (BYE)</span>
                 </div>
             </div>
             <div class="teams-grid" id="teams-chips">
@@ -78,31 +423,25 @@
         <main class="bracket-wrapper card-box">
             <div class="bracket-header">
                 <h2>🏆 토너먼트 대진표 (TOURNAMENT BRACKET)</h2>
-                <p>각 경기 카드의 [✏️ 결과 입력] 버튼을 눌러 점수를 기록하면 다음 라운드 진출팀이 자동으로 반영됩니다.</p>
+                <p>각 경기 카드의 [✏️ 경기 결과 입력] 버튼을 눌러 점수를 기록하면 다음 라운드 진출팀이 자동으로 반영됩니다.</p>
             </div>
-            <div class="bracket-container" id="bracket">
-                <!-- Round 1: 예선전 -->
+            <div class="bracket-container bracket-6teams" id="bracket">
+                <!-- Round 1: 예선전 (6강) -->
                 <div class="round round-1">
-                    <h3 class="round-title"><span class="step-num">1</span> 예선전 <small>(6개 학급 / 3경기)</small></h3>
+                    <h3 class="round-title"><span class="step-num">1</span> 예선전 <small>(4개 학과 / 2경기)</small></h3>
                     <div class="match-list" id="round-1-matches"></div>
                 </div>
 
-                <!-- Round 2: 8강전 -->
+                <!-- Round 2: 4강 준결승 -->
                 <div class="round round-2">
-                    <h3 class="round-title"><span class="step-num">2</span> 8강전 <small>(8개 학급 / 4경기)</small></h3>
+                    <h3 class="round-title"><span class="step-num">2</span> 4강 준결승 <small>(부전승 2개팀 포함 / 2경기)</small></h3>
                     <div class="match-list" id="round-2-matches"></div>
                 </div>
 
-                <!-- Round 3: 4강전 (준결승) -->
+                <!-- Round 3: 결승전 & 3,4위전 -->
                 <div class="round round-3">
-                    <h3 class="round-title"><span class="step-num">3</span> 4강 준결승 <small>(2경기)</small></h3>
+                    <h3 class="round-title"><span class="step-num">3</span> 결승전 & 3·4위전</h3>
                     <div class="match-list" id="round-3-matches"></div>
-                </div>
-
-                <!-- Round 4: 결승전 & 3,4위전 -->
-                <div class="round round-4">
-                    <h3 class="round-title"><span class="step-num">4</span> 결승전 & 3·4위전</h3>
-                    <div class="match-list" id="round-4-matches"></div>
                 </div>
             </div>
         </main>
@@ -111,16 +450,16 @@
         <section class="champion-section card-box" id="champion-display">
             <div class="champion-header">
                 <span class="trophy-badge">CHAMPIONSHIP PODIUM</span>
-                <h2>🏆 대회 최종 시상 (HONOR ROLL) 🏆</h2>
+                <h2>🏆 CCM Champions League 최종 시상 🏆</h2>
             </div>
             <div class="podium">
                 <div class="podium-item silver">
-                    <div class="rank-badge">🥈 준우승</div>
+                    <div class="rank-badge">🥈 준우승 (2위)</div>
                     <div class="team-name" id="place-2">미정</div>
                 </div>
                 <div class="podium-item gold">
                     <div class="trophy-icon">🏆</div>
-                    <div class="rank-badge">🥇 최종 우승</div>
+                    <div class="rank-badge">🥇 최종 우승 (1위)</div>
                     <div class="team-name" id="place-1">미정</div>
                 </div>
                 <div class="podium-item bronze">
@@ -133,17 +472,17 @@
         <!-- Rules & Info Footer -->
         <footer class="app-footer">
             <div class="rules-card card-box">
-                <h3>📌 토너먼트 대진 규칙 및 참고사항</h3>
+                <h3>📌 CCM Champions League 대진 규칙 및 참고사항</h3>
                 <ul>
-                    <li><strong>참가 팀:</strong> 총 11개 학급 (전기 3-1, 3-2 / 기계 3-1, 3-2, 3-3 / 산업설비 3-1 / 자동차 3-1, 3-2 / 스마트금형 3-1 / 건축토목 3-1, 3-2)</li>
-                    <li><strong>부전승(BYE):</strong> 11개 팀 대진 특성상 5개 팀은 부전승으로 8강전에 직행합니다.</li>
-                    <li><strong>승패 기록:</strong> 경기 카드에서 점수를 승부차기 포함하여 입력 시, 승리 학급이 실시간 자동 진출합니다.</li>
-                    <li><strong>3·4위전:</strong> 4강(준결승) 패자 두 팀 간의 3위 결정전이 결승전과 함께 개최됩니다.</li>
+                    <li><strong>참가 학과:</strong> 총 6개 학과 (전기과, 기계과, 산업설비과, 자동차과, 스마트금형과, 건축토목과)</li>
+                    <li><strong>부전승 (BYE):</strong> 6개 학과 대진 특성상 시드 추첨으로 2개 학과는 4강 준결승전으로 직행합니다.</li>
+                    <li><strong>승부차기(PK):</strong> 정규시간 스코어가 동점일 경우에만 승부차기 입력창이 자동으로 나타나며, 승부차기 결과를 기록하여 승리 학과가 진출합니다.</li>
+                    <li><strong>3·4위전:</strong> 4강(준결승) 패자 두 학과 간의 3위 결정전이 결승전과 함께 진행됩니다.</li>
                 </ul>
             </div>
             <div class="copyright">
                 <img src="ccm.jpg" alt="학교 로고" class="footer-logo">
-                <span>춘천기계공업고등학교 3학년 체육대회 축구 대진표 시스템</span>
+                <span>춘천기계공업고등학교 CCM Champions League 학과 축구 토너먼트 시스템</span>
             </div>
         </footer>
     </div>
@@ -156,6 +495,7 @@
                 <button class="modal-close" id="modal-close-btn">&times;</button>
             </div>
             <div class="modal-body">
+                <div class="modal-section-title">⏱️ 정규시간 스코어</div>
                 <div class="score-input-container">
                     <div class="team-score-box">
                         <span class="modal-team-name" id="modal-team1-name">팀 1</span>
@@ -167,12 +507,23 @@
                         <input type="number" id="modal-team2-score" min="0" max="99" value="0">
                     </div>
                 </div>
-                <div class="pk-option">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="modal-is-pk">
-                        <span>승부차기(PK) 적용</span>
-                    </label>
-                    <input type="text" id="modal-pk-detail" placeholder="예: PK 4:3" style="display:none;">
+
+                <!-- PK Score Entry Box (Toggled strictly when regular score is TIED) -->
+                <div class="pk-container" id="modal-pk-container" style="display: none;">
+                    <div class="pk-banner-notice">
+                        ⚡ 정규시간 동점! 승부차기(PK) 스코어를 입력하세요
+                    </div>
+                    <div class="score-input-container pk-input-group">
+                        <div class="team-score-box">
+                            <span class="pk-label" id="modal-pk-team1-label">팀 1 (PK)</span>
+                            <input type="number" id="modal-team1-pk" min="0" max="99" value="0">
+                        </div>
+                        <div class="vs-badge pk-vs">PK</div>
+                        <div class="team-score-box">
+                            <span class="pk-label" id="modal-pk-team2-label">팀 2 (PK)</span>
+                            <input type="number" id="modal-team2-pk" min="0" max="99" value="0">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
